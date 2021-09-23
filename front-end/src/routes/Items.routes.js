@@ -23,11 +23,12 @@ const getRoutes = (path) => {
 
 export const Items = () => {
   let { path, url } = useRouteMatch();
+  const routes = getRoutes(path);
 
   return (
     <>
       <Breadcrumb />
-      <Switch>{renderRoutes(getRoutes(path))}</Switch>
+      <Switch>{renderRoutes(routes)}</Switch>
     </>
   );
 };

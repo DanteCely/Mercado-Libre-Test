@@ -1,18 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom';
-import { getQueryParams } from '../../utils';
-
-// export const SearchContext = createContext();
-
-// export const Provider = ({ childer }) => {
-//   const [searchString, setSearchString] = useState('');
-
-//   getProps = () => {
-//     return { searchString, setSearchString };
-//   };
-
-//   return <SearchContext.Provider {...getProps()}> {childer}</SearchContext.Provider>;
-// };
+import { getQueryParams } from '@utils';
+import { Image, Button, Input } from '@components/atoms';
+import { Logo_ML, ic_Search } from '@assets/images';
+import './Search.scss';
 
 export const Search = () => {
   let history = useHistory();
@@ -31,19 +22,49 @@ export const Search = () => {
     }
   };
 
+  const propsLogo = {
+    src: Logo_ML,
+    alt: 'Logo', // TODO: I18N
+    className: 'nav-search__logo',
+  };
+
+  const propsButton = {
+    onClick: onSearch,
+    className: 'nav-search__search-button',
+  };
+
+  const propsIconSearch = {
+    src: ic_Search,
+    alt: 'Search', // TODO: I18N
+    className: 'nav-search__search-button-icon',
+  };
+
+  const propsInput = {
+    className: 'nav-search__input',
+    'aria-label': 'Search', // TODO: I18N
+    value: searchString,
+    placeholder: 'Nunca dejes de buscar', // TODO: I18N
+    onChange: (event) => setSearchString(event.target.value),
+    onKeyPress,
+  };
+
+  const propsHeader = {
+    className: 'nav-search',
+  };
+
+  const propsSearchBar = {
+    className: 'nav-search__search-bar',
+  };
+
   return (
-    <>
-      <span>Logo</span>
-      <input
-        type='text'
-        aria-label='Search'
-        value={searchString}
-        onChange={(event) => setSearchString(event.target.value)}
-        onKeyPress={onKeyPress}
-      />
-      <button type='button' onClick={onSearch}>
-        Search
-      </button>
-    </>
+    <header {...propsHeader}>
+      <Image {...propsLogo} />
+      <span {...propsSearchBar}>
+        <Input {...propsInput} />
+        <Button {...propsButton}>
+          <Image {...propsIconSearch} />
+        </Button>
+      </span>
+    </header>
   );
 };

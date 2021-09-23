@@ -1,0 +1,44 @@
+@import '@assets/styles/colors';
+@import '@assets/styles/fonts';
+
+@mixin nav-search-in {
+  padding-block: 1rem;
+}
+
+.nav-search {
+  background-color: $yellow;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+
+  &__logo {
+    @include nav-search-in;
+    padding-right: 2rem;
+  }
+
+  &__search-bar {
+    @include nav-search-in;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    border: none;
+    height: 4rem;
+    width: 70rem; /**TODO: Añadir el max width y responsive*/
+    border-radius: 4px 0 0 4px;
+    font-size: $size-medium;
+  }
+
+  &__search-button {
+    width: 4.5rem;
+    height: 4rem;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+
+  &__search-button-icon {
+    vertical-align: middle;
+  }
+}
