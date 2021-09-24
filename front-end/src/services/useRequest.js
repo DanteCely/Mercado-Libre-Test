@@ -3,7 +3,7 @@ import { createPathByParamsType, hasParams } from '../utils';
 
 const { REACT_APP_URL } = process.env;
 
-const useRequest = () => {
+export const useRequest = () => {
   const [params, setParams] = useState();
   const [response, setResponse] = useState({});
 
@@ -28,5 +28,3 @@ const useRequest = () => {
 
   return [response, setParams];
 };
-
-export default useRequest;

@@ -1,10 +1,9 @@
 import React, { createContext } from 'react';
 import { Switch, Route, Redirect, useLocation, useRouteMatch } from 'react-router-dom';
-import { ProductDetail } from '../components/templates/ProductDetail';
-import { SearchResults } from '../components/templates/SearchResults';
-import { Breadcrumb } from '../components/molecules/Breadcrumb';
+import { ProductDetail } from '@components/templates';
+import { SearchResults } from '@components/templates';
+import { Breadcrumb } from '@components/molecules';
 import { renderRoutes } from '../utils';
-import useRequest from '../services/useRequest';
 
 const getRoutes = (path) => {
   return [

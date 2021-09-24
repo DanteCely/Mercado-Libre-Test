@@ -5,7 +5,7 @@ import { Search } from '../components/molecules/Search';
 
 import { renderRoutes } from '../utils';
 import { Items } from './Items.routes';
-import { ItemsContext, ItemsProvider } from './ItemContext';
+import ItemsProvider, { ItemsContext } from './ItemContext';
 
 const routes = [
   {

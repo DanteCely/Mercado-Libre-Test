@@ -7,6 +7,7 @@ export const Image = (props) => {
 
 Image.prototype = {
   src: PropTypes.string,
+  srcset: PropTypes.string,
   alt: PropTypes.string,
   className: PropTypes.string,
 };

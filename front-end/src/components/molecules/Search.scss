@@ -11,23 +11,29 @@
   display: flex;
   justify-content: center;
 
-  &__logo {
+  &__logo-home {
     @include nav-search-in;
-    padding-right: 2rem;
+    padding: 1rem;
+    display: flex;
+    align-content: space-around;
+    justify-content: center;
   }
 
   &__search-bar {
     @include nav-search-in;
     display: flex;
     align-items: center;
+    width: 70%;
+    max-width: 70rem;
   }
 
   &__input {
     border: none;
     height: 4rem;
-    width: 70rem; /**TODO: Añadir el max width y responsive*/
+    width: 100%;
     border-radius: 4px 0 0 4px;
     font-size: $size-medium;
+    padding-inline: 1.5rem;
   }
 
   &__search-button {

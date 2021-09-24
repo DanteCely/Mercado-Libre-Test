@@ -13,12 +13,6 @@ export const getQueryParams = (params) => {
   return queryParamsPath.slice(0, -1);
 };
 
-const getParams = (paramsList) => {
-  const paramsPath = paramsList.map((subPath) => `/${subPath}`);
-
-  return paramsPath;
-};
-
 export const createPathByParamsType = (url, params) => {
   let urlPath = url;
 

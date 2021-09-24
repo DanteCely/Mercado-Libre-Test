@@ -1,9 +1,9 @@
 import React, { createContext } from 'react';
-import useRequest from '../services/useRequest';
+import { useRequest } from '@services';
 
 export const ItemsContext = createContext(undefined);
 
-export const ItemsProvider = ({ children }) => {
+const ItemsProvider = ({ children }) => {
   const [itemsResult, setQueryParams] = useRequest();
   const [item, setParams] = useRequest();
 
@@ -18,3 +18,5 @@ export const ItemsProvider = ({ children }) => {
 
   return <ItemsContext.Provider value={getProps()}>{children}</ItemsContext.Provider>;
 };
+
+export default ItemsProvider;

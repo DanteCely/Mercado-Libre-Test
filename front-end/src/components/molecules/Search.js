@@ -1,8 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation, useHistory, Link } from 'react-router-dom';
+import i18n from '@i18n';
 import { getQueryParams } from '@utils';
 import { Image, Button, Input } from '@components/atoms';
-import { Logo_ML, ic_Search } from '@assets/images';
+import { Logo_ML, Logo_ML2x, ic_Search, ic_Search2x } from '@assets/images';
 import './Search.scss';
 
 export const Search = () => {
@@ -11,9 +12,11 @@ export const Search = () => {
   const [searchString, setSearchString] = useState(new URLSearchParams(search).get('search') || '');
 
   const onSearch = () => {
-    const searchParam = getQueryParams({ search: searchString, pathname: 'items' });
+    if (searchString) {
+      const searchParam = getQueryParams({ search: searchString, pathname: 'items' });
 
-    history.push(searchParam);
+      history.push(searchParam);
+    }
   };
 
   const onKeyPress = (event) => {
@@ -23,9 +26,9 @@ export const Search = () => {
   };
 
   const propsLogo = {
+    srcset: `${Logo_ML} 1x, ${Logo_ML2x} 2x`,
     src: Logo_ML,
-    alt: 'Logo', // TODO: I18N
-    className: 'nav-search__logo',
+    alt: i18n('NAV_SEARCH__LOGO_ALT'),
   };
 
   const propsButton = {
@@ -34,16 +37,17 @@ export const Search = () => {
   };
 
   const propsIconSearch = {
+    srcset: `${ic_Search} 1x, ${ic_Search2x} 2x`,
     src: ic_Search,
-    alt: 'Search', // TODO: I18N
+    alt: i18n('NAV_SEARCH__SEARCH_NAME'),
     className: 'nav-search__search-button-icon',
   };
 
   const propsInput = {
     className: 'nav-search__input',
-    'aria-label': 'Search', // TODO: I18N
+    'aria-label': i18n('NAV_SEARCH__SEARCH_NAME'),
     value: searchString,
-    placeholder: 'Nunca dejes de buscar', // TODO: I18N
+    placeholder: i18n('NAV_SEARCH__INPUT_PLACEHOLDER'),
     onChange: (event) => setSearchString(event.target.value),
     onKeyPress,
   };
@@ -56,9 +60,17 @@ export const Search = () => {
     className: 'nav-search__search-bar',
   };
 
+  const propsLogoLink = {
+    to: '/',
+    onClick: () => setSearchString(''),
+    className: 'nav-search__logo-home',
+  };
+
   return (
     <header {...propsHeader}>
-      <Image {...propsLogo} />
+      <Link {...propsLogoLink}>
+        <Image {...propsLogo} />
+      </Link>
       <span {...propsSearchBar}>
         <Input {...propsInput} />
         <Button {...propsButton}>
