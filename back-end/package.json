@@ -11,7 +11,10 @@
     "url": "git+ssh://git@gitlab.com/DanteCely/mercado-libre-server.git"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Marvin Daniel",
+    "lastname": "Cely Báez"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://gitlab.com/DanteCely/mercado-libre-server/issues"

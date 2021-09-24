@@ -1,9 +1,8 @@
 import React, { createContext } from 'react';
 import { Switch, Route, Redirect, useLocation, useRouteMatch } from 'react-router-dom';
-import { ProductDetail } from '@components/templates';
-import { SearchResults } from '@components/templates';
+import { ProductDetail, ProductList } from '@components/templates';
 import { Breadcrumb } from '@components/molecules';
-import { renderRoutes } from '../utils';
+import { renderRoutes } from '@utils';
 
 const getRoutes = (path) => {
   return [
@@ -14,13 +13,13 @@ const getRoutes = (path) => {
     {
       path: `${path}`,
       component: () => {
-        return <SearchResults />;
+        return <ProductList />;
       },
     },
   ];
 };
 
-export const Items = () => {
+export const ItemsRoutes = () => {
   let { path, url } = useRouteMatch();
   const routes = getRoutes(path);
 

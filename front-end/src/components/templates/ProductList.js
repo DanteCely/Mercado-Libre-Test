@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { ItemsContext } from '../../routes/ItemContext';
 import { Switch, Route, Redirect, useLocation, useRouteMatch } from 'react-router-dom';
 
-export const SearchResults = () => {
+export const ProductList = () => {
   let { pathname, search } = useLocation();
 
   const { itemsResult, setQueryParams } = useContext(ItemsContext);
@@ -16,7 +16,7 @@ export const SearchResults = () => {
   return (
     <>
       <div>I'm search's Reult of {search}</div>
-      <div>{JSON.stringify(itemsResult)}</div>
+      <div>{JSON.stringify(itemsResult.categories)}</div>
     </>
   );
 };

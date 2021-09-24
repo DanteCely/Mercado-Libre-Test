@@ -4,9 +4,9 @@ import i18n from '@i18n';
 import { getQueryParams } from '@utils';
 import { Image, Button, Input } from '@components/atoms';
 import { Logo_ML, Logo_ML2x, ic_Search, ic_Search2x } from '@assets/images';
-import './Search.scss';
+import './SearchBar.scss';
 
-export const Search = () => {
+export const SearchBar = () => {
   let history = useHistory();
   let { search } = useLocation();
   const [searchString, setSearchString] = useState(new URLSearchParams(search).get('search') || '');

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route, Redirect, useLocation, Link } from 'react-router-dom';
-import { Home } from '../components/templates/Home';
-import { Search } from '../components/molecules/Search';
+import { Home } from '@components/templates';
+import { SearchBar } from '@components/organisms';
 
-import { renderRoutes } from '../utils';
-import { Items } from './Items.routes';
-import ItemsProvider, { ItemsContext } from './ItemContext';
+import { renderRoutes } from '@utils';
+import { ItemsRoutes } from './ItemsRoutes';
+import ItemsProvider from './ItemContext';
 
 const routes = [
   {
@@ -15,7 +15,7 @@ const routes = [
   },
   {
     path: '/items',
-    component: () => <Items />,
+    component: () => <ItemsRoutes />,
   },
 ];
 
@@ -23,7 +23,7 @@ export const Routes = () => {
   return (
     <main>
       <ItemsProvider>
-        <Search />
+        <SearchBar />
         <Switch>{renderRoutes(routes)}</Switch>
       </ItemsProvider>
     </main>
