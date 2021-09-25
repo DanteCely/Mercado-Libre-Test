@@ -2,46 +2,11 @@ const { response } = require('express');
 const { makeRequestByURL } = require('../services/mercado-libre.service');
 const { URL_API, END_POINT_PRODUCTS_LIST, END_POINT_PRODUCT_DETAILS, END_POINT_CATEGORIES } = process.env;
 const { author } = require('../package.json');
-const { createPathByParamsType, getParams } = require('../utils');
+const { pathUtils, handleError, itemsUtils } = require('../utils');
 
-const getCategoryListByFilters = (filters) => {
-  const categoryFilter = filters.find(({ id }) => id === 'category');
-  const categories = categoryFilter.values[0].path_from_root.map(({ name }) => name);
-
-  return categories;
-};
-
-const getItems = (results) => {
-  const items = results.map((item) => {
-    const {
-      id,
-      title,
-      prices: { presentation },
-      price: current_price,
-      thumbnail,
-      condition,
-      shipping: { free_shipping },
-    } = item;
-
-    const [amount, decimals] = current_price.toString().split('.');
-    const price = {
-      currency: presentation.display_currency,
-      amount,
-      decimals,
-    };
-
-    return {
-      id,
-      title,
-      price,
-      picture: thumbnail,
-      condition,
-      free_shipping,
-    };
-  });
-
-  return items;
-};
+const { checkErrorAndThrow, sendFailedResponse } = handleError;
+const { createPathByParamsType, getParams } = pathUtils;
+const { getCategoryListByFilters, getItems } = itemsUtils;
 
 const getProductList = async (req, res = response) => {
   const { q: query, offset = 0, limit = 4 } = req.query;
@@ -50,7 +15,11 @@ const getProductList = async (req, res = response) => {
   const endpoint = createPathByParamsType(url, { query, offset, limit });
 
   try {
-    const { results, filters } = await makeRequestByURL(endpoint);
+    const productList = await makeRequestByURL(endpoint);
+
+    checkErrorAndThrow(productList);
+
+    const { results, filters } = productList;
 
     const data = {
       author,
@@ -64,18 +33,17 @@ const getProductList = async (req, res = response) => {
     });
   } catch (error) {
     console.error(error);
-
-    res.status(500).json({
-      ok: false,
-      msg: 'Error Inesperado: revisar logs.',
-    });
+    sendFailedResponse(res, error);
   }
 };
 
 const getCategoryListById = async (category_id) => {
   const categoriesUrl = URL_API + END_POINT_CATEGORIES + getParams([category_id]);
+  const categories = await makeRequestByURL(categoriesUrl);
 
-  const { path_from_root } = await makeRequestByURL(categoriesUrl);
+  checkErrorAndThrow(categories);
+
+  const { path_from_root } = categories;
 
   return path_from_root.map(({ name }) => name);
 };
@@ -93,16 +61,18 @@ const getItem = async (req, res = response) => {
       makeRequestByURL(descriptionURL),
     ]);
 
+    checkErrorAndThrow([selectedItem, description]);
+
     const {
       id,
       title,
       price: the_price,
+      category_id,
       pictures,
       condition,
       shipping: { free_shipping },
       sold_quantity,
       currency_id,
-      category_id,
     } = selectedItem;
 
     const [amount, decimals] = the_price.toString().split('.');
@@ -136,11 +106,7 @@ const getItem = async (req, res = response) => {
     });
   } catch (error) {
     console.error(error);
-
-    res.status(500).json({
-      ok: false,
-      msg: 'Error Inesperado: revisar logs.',
-    });
+    sendFailedResponse(res, error);
   }
 };
 

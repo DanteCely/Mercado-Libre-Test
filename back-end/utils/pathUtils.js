@@ -28,7 +28,7 @@ const createPathByParamsType = (url, params) => {
 const getParams = (paramsList) => {
   const paramsPath = paramsList.map((subPath) => `/${subPath}`);
 
-  return paramsPath;
+  return paramsPath.join('');
 };
 
 module.exports = { getQueryParams, createPathByParamsType, getParams };
