@@ -6,6 +6,8 @@ import { Image, Button, Input } from '@components/atoms';
 import { Logo_ML, Logo_ML2x, ic_Search, ic_Search2x } from '@assets/images';
 import './SearchBar.scss';
 
+const { REACT_APP_END_POINT_PRODUCT_DETAILS } = process.env;
+
 export const SearchBar = () => {
   let history = useHistory();
   let { search } = useLocation();
@@ -13,7 +15,7 @@ export const SearchBar = () => {
 
   const onSearch = () => {
     if (searchString) {
-      const searchParam = getQueryParams({ search: searchString, pathname: 'items' });
+      const searchParam = getQueryParams({ pathname: REACT_APP_END_POINT_PRODUCT_DETAILS, search: searchString });
 
       history.push(searchParam);
     }
@@ -26,7 +28,7 @@ export const SearchBar = () => {
   };
 
   const propsLogo = {
-    srcset: `${Logo_ML} 1x, ${Logo_ML2x} 2x`,
+    srcSet: `${Logo_ML} 1x, ${Logo_ML2x} 2x`,
     src: Logo_ML,
     alt: i18n('NAV_SEARCH__LOGO_ALT'),
   };
@@ -37,7 +39,7 @@ export const SearchBar = () => {
   };
 
   const propsIconSearch = {
-    srcset: `${ic_Search} 1x, ${ic_Search2x} 2x`,
+    srcSet: `${ic_Search} 1x, ${ic_Search2x} 2x`,
     src: ic_Search,
     alt: i18n('NAV_SEARCH__SEARCH_NAME'),
     className: 'nav-search__search-button-icon',

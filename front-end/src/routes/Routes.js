@@ -21,11 +21,9 @@ const routes = [
 
 export const Routes = () => {
   return (
-    <main>
-      <ItemsProvider>
-        <SearchBar />
-        <Switch>{renderRoutes(routes)}</Switch>
-      </ItemsProvider>
-    </main>
+    <ItemsProvider>
+      <SearchBar />
+      <Switch>{renderRoutes(routes)}</Switch>
+    </ItemsProvider>
   );
 };

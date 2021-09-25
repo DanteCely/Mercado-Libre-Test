@@ -9,10 +9,10 @@ const { createPathByParamsType, getParams } = pathUtils;
 const { getCategoryListByFilters, getItems } = itemsUtils;
 
 const getProductList = async (req, res = response) => {
-  const { q: query, offset = 0, limit = 4 } = req.query;
+  const { q, offset = 0, limit = 4 } = req.query;
 
   const url = URL_API + END_POINT_PRODUCTS_LIST;
-  const endpoint = createPathByParamsType(url, { query, offset, limit });
+  const endpoint = createPathByParamsType(url, { q, offset, limit });
 
   try {
     const productList = await makeRequestByURL(endpoint);
@@ -45,15 +45,15 @@ const getCategoryListById = async (category_id) => {
 
   const { path_from_root } = categories;
 
-  return path_from_root.map(({ name }) => name);
+  return path_from_root?.map(({ name }) => name) || [];
 };
 
 const getItem = async (req, res = response) => {
   const { id } = req.params;
 
   const productDetailsUrl = URL_API + END_POINT_PRODUCT_DETAILS;
-  const itemURL = productDetailsUrl + getParams([id]);
-  const descriptionURL = productDetailsUrl + getParams([id, 'description']);
+  const itemURL = createPathByParamsType(productDetailsUrl, [id]);
+  const descriptionURL = createPathByParamsType(productDetailsUrl, [id, 'description']);
 
   try {
     const [selectedItem, description] = await Promise.all([

@@ -1,5 +1,5 @@
 const getQueryParams = (params) => {
-  const { pathname, ...queryParams } = params;
+  const { pathname = '', ...queryParams } = params;
 
   let queryParamsPath = `${pathname}?`;
 
@@ -13,22 +13,24 @@ const getQueryParams = (params) => {
   return queryParamsPath.slice(0, -1);
 };
 
+const getParams = (paramsList) => {
+  const paramsPath = paramsList.map((subPath) => `/${subPath}`);
+
+  return paramsPath.join('');
+};
+
 const createPathByParamsType = (url, params) => {
   let urlPath = url;
 
-  if (typeof params === 'object') {
+  if (Array.isArray(params)) {
+    urlPath += getParams(params);
+  } else if (typeof params === 'object') {
     urlPath += getQueryParams(params);
   } else if (typeof params === 'string') {
     urlPath += params;
   }
 
   return urlPath;
-};
-
-const getParams = (paramsList) => {
-  const paramsPath = paramsList.map((subPath) => `/${subPath}`);
-
-  return paramsPath.join('');
 };
 
 module.exports = { getQueryParams, createPathByParamsType, getParams };

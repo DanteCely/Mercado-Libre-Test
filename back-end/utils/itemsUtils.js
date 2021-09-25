@@ -1,8 +1,8 @@
 const getCategoryListByFilters = (filters) => {
   const categoryFilter = filters.find(({ id }) => id === 'category');
-  const categories = categoryFilter.values[0].path_from_root.map(({ name }) => name);
+  const { path_from_root } = categoryFilter?.values[0] || {};
 
-  return categories;
+  return path_from_root?.map(({ name }) => name) || [];
 };
 
 const getItems = (results) => {

@@ -1,84 +1,128 @@
+/** Roboto Font Face */
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-Black.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-Black.ttf') format('TrueType');
   font-weight: bolder;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-BlackItalic.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-BlackItalic.ttf') format('TrueType');
   font-weight: bolder;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-Bold.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-Bold.ttf') format('TrueType');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-BoldItalic.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-BoldItalic.ttf') format('TrueType');
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-Italic.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-Italic.ttf') format('TrueType');
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-Light.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-Light.ttf') format('TrueType');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-LightItalic.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-LightItalic.ttf') format('TrueType');
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-Medium.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-Medium.ttf') format('TrueType');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-MediumItalic.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-MediumItalic.ttf') format('TrueType');
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-Regular.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-Regular.ttf') format('TrueType');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-Thin.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-Thin.ttf') format('TrueType');
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../fonts/Roboto-ThinItalic.ttf') format('TrueType');
+  src: url('../fonts/Roboto/Roboto-ThinItalic.ttf') format('TrueType');
   font-weight: 100;
   font-style: italic;
+}
+
+/** Yaldevi Font Face */
+@font-face {
+  font-family: 'Yaldevi';
+  src: url('../fonts/Yaldevi/Yaldevi-Bold.ttf') format('TrueType');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Yaldevi';
+  src: url('../fonts/Yaldevi/Yaldevi-ExtraLight.ttf') format('TrueType');
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Yaldevi';
+  src: url('../fonts/Yaldevi/Yaldevi-Light.ttf') format('TrueType');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Yaldevi';
+  src: url('../fonts/Yaldevi/Yaldevi-Medium.ttf') format('TrueType');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Yaldevi';
+  src: url('../fonts/Yaldevi/Yaldevi-Regular.ttf') format('TrueType');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Yaldevi';
+  src: url('../fonts/Yaldevi/Yaldevi-SemiBold.ttf') format('TrueType');
+  font-weight: 600;
+  font-style: normal;
 }
 
 $size-smaller: 1.2rem;
@@ -88,3 +132,8 @@ $size-medium: 1.8rem;
 $size-large: 2.4rem;
 $size-larger: 2.8rem;
 $size-x-large: 4.6rem;
+
+$font-primary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', sans-serif;
+
+$font-secondary: 'Yaldevi', 'Fira Sans', 'Droid Sans', sans-serif;

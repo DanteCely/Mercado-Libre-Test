@@ -7,7 +7,7 @@ module.exports = function override(config) {
     '@utils': 'src/utils',
     '@services': 'src/services',
     '@i18n': 'src/i18n',
-    '@router': 'src/router',
+    '@routes': 'src/routes',
   })(config);
 
   return config;

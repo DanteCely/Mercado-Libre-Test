@@ -1,5 +1,5 @@
 export const getQueryParams = (params) => {
-  const { pathname, ...queryParams } = params;
+  const { pathname = '', ...queryParams } = params;
 
   let queryParamsPath = `${pathname}?`;
 
@@ -13,10 +13,18 @@ export const getQueryParams = (params) => {
   return queryParamsPath.slice(0, -1);
 };
 
+export const getParams = (paramsList) => {
+  const paramsPath = paramsList.map((subPath, index) => (index === 0 ? subPath : `/${subPath}`));
+
+  return paramsPath.join('');
+};
+
 export const createPathByParamsType = (url, params) => {
   let urlPath = url;
 
-  if (typeof params === 'object') {
+  if (Array.isArray(params)) {
+    urlPath += getParams(params);
+  } else if (typeof params === 'object') {
     urlPath += getQueryParams(params);
   } else if (typeof params === 'string') {
     urlPath += params;
@@ -28,6 +36,7 @@ export const createPathByParamsType = (url, params) => {
 export const hasParams = (params) => {
   const isFullObject = typeof params === 'object' && !Array.isArray(params) && !!Object.keys(params).length;
   const isFullString = typeof params === 'string' && !!params.length;
+  const isFullArray = Array.isArray(params) && !!params.length;
 
-  return isFullObject || isFullString;
+  return isFullObject || isFullString || isFullArray;
 };

@@ -1,10 +1,10 @@
 import { useEffect, useCallback, useState } from 'react';
-import { createPathByParamsType, hasParams } from '../utils';
+import { createPathByParamsType, hasParams } from '@utils';
 
 const { REACT_APP_URL } = process.env;
 
 export const useRequest = () => {
-  const [params, setParams] = useState();
+  const [params, setQueryItem] = useState();
   const [response, setResponse] = useState({});
 
   const fetchAPI = useCallback(async () => {
@@ -17,7 +17,7 @@ export const useRequest = () => {
       if (ok) {
         setResponse(data);
       } else {
-        // TODO: Not Found
+        // TODO: Handle error response
       }
     }
   }, [params]);
@@ -26,5 +26,5 @@ export const useRequest = () => {
     fetchAPI();
   }, [fetchAPI]);
 
-  return [response, setParams];
+  return [response, setQueryItem];
 };

@@ -1,22 +1,33 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { useRequest } from '@services';
 
 export const ItemsContext = createContext(undefined);
 
 const ItemsProvider = ({ children }) => {
-  const [itemsResult, setQueryParams] = useRequest();
-  const [item, setParams] = useRequest();
+  const [itemsResult, setQueryItems] = useRequest({});
+  const [item, setQueryItem] = useRequest({});
 
-  const getProps = () => {
-    return {
-      itemsResult,
-      setQueryParams,
-      item,
-      setParams,
-    };
+  const { categories: catFromItem } = item;
+  const { categories: catFromItemsRes } = itemsResult;
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    setCategories(catFromItem);
+  }, [catFromItem]);
+
+  useEffect(() => {
+    setCategories(catFromItemsRes);
+  }, [catFromItemsRes]);
+
+  const propsItemContext = {
+    itemsResult,
+    setQueryItems,
+    item,
+    setQueryItem,
+    categories,
   };
 
-  return <ItemsContext.Provider value={getProps()}>{children}</ItemsContext.Provider>;
+  return <ItemsContext.Provider value={propsItemContext}>{children}</ItemsContext.Provider>;
 };
 
 export default ItemsProvider;
