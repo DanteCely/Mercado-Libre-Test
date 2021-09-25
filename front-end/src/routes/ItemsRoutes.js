@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Switch, Route, Redirect, useLocation, useRouteMatch } from 'react-router-dom';
+import { Switch, useRouteMatch } from 'react-router-dom';
 import _ from 'lodash';
 import { ProductDetail, ProductList } from '@components/templates';
 import { Breadcrumb } from '@components/molecules';
@@ -24,7 +24,7 @@ const getRoutes = (path) => {
 export const ItemsRoutes = () => {
   let { path, url } = useRouteMatch();
   const routes = getRoutes(path);
-  // const { categories } = useContext(ItemsContext);
+  // const { categories } = useContext(ItemsContext); // TODO: por qué se estropéa?
 
   return (
     <main>

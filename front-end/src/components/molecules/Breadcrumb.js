@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ItemsContext } from '@routes/ItemContext';
 import _ from 'lodash';
-import { getSomeElement } from '@utils';
 import './Breadcrumb.scss';
 
 export const Breadcrumb = () => {
@@ -18,5 +17,5 @@ export const Breadcrumb = () => {
     return categoriesToRender;
   };
 
-  return <ul className={'nav-breadcrumb'}>{renderCategories()}</ul>;
+  return !_.isEmpty(categories) && <ul className={'nav-breadcrumb'}>{renderCategories()}</ul>;
 };
