@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Button = (props) => {
-  const { type, className, onClick, children } = props;
-  const propsButton = { type, className, onClick };
+  const { children, ...propsButton } = props;
 
   return <button {...propsButton}>{children}</button>;
 };
