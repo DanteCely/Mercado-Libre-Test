@@ -6,20 +6,20 @@ const { pathUtils, handleError, itemsUtils } = require('../utils');
 
 const { checkErrorAndThrow, sendFailedResponse } = handleError;
 const { createPathByParamsType, getParams } = pathUtils;
-const { getCategoryListByFilters, getItems } = itemsUtils;
+const { getCategoryListByFilters, getItems, getPriceAmount } = itemsUtils;
 
-const getProductList = async (req, res = response) => {
+const getShowCase = async (req, res = response) => {
   const { q, offset = 0, limit = 4 } = req.query;
 
   const url = URL_API + END_POINT_PRODUCTS_LIST;
   const endpoint = createPathByParamsType(url, { q, offset, limit });
 
   try {
-    const productList = await makeRequestByURL(endpoint);
+    const showCase = await makeRequestByURL(endpoint);
 
-    checkErrorAndThrow(productList);
+    checkErrorAndThrow(showCase);
 
-    const { results, filters } = productList;
+    const { results, filters } = showCase;
 
     const data = {
       author,
@@ -75,12 +75,9 @@ const getItem = async (req, res = response) => {
       currency_id,
     } = selectedItem;
 
-    const [amount, decimals] = the_price.toString().split('.');
-
     const price = {
       currency: currency_id,
-      amount,
-      decimals,
+      ...getPriceAmount(the_price),
     };
 
     const item = {
@@ -111,6 +108,6 @@ const getItem = async (req, res = response) => {
 };
 
 module.exports = {
-  getProductList,
+  getShowCase,
   getItem,
 };

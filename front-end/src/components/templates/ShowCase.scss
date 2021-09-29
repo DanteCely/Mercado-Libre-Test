@@ -1,0 +1,28 @@
+@import '@assets/styles/colors';
+@import '@assets/styles/fonts';
+
+.show-case {
+  background-color: white;
+  padding: 1.6rem;
+  border-radius: 4px;
+  width: fit-content;
+
+  &--empty-top {
+    margin-top: 5.6rem;
+  }
+
+  hr {
+    border: none;
+    background-color: transparent;
+    border-top: 2px solid rgba($gray-2, 0.2);
+    margin-block: 1.6rem;
+    padding-inline: 1rem;
+    align-self: center;
+    width: 98%;
+  }
+
+  &__product-item-container {
+    display: flex;
+    flex-direction: column;
+  }
+}

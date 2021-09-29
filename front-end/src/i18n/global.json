@@ -1,5 +1,7 @@
 {
   "NAV_SEARCH__LOGO_ALT": "Logo",
   "NAV_SEARCH__SEARCH_NAME": "Search",
-  "NAV_SEARCH__INPUT_PLACEHOLDER": "Nunca dejes de buscar"
+  "NAV_SEARCH__INPUT_PLACEHOLDER": "Nunca dejes de buscar",
+  "PRICE__FREE_SHIPPING_DESCRIPTOR": "Free shipping icon",
+  "PRODUCT_ITEM__IMAGE_DESCRIPTOR": "Thumbnail of the product"
 }

@@ -1,0 +1,38 @@
+@import '@assets/styles/colors';
+@import '@assets/styles/fonts';
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+
+  &__info {
+    display: flex;
+  }
+
+  &__thumbnail {
+    margin-right: 1.6rem;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 4px;
+  }
+
+  &__price-description {
+    padding-top: 3rem;
+    font-size: $size-medium;
+    width: 60rem;
+  }
+
+  &__description {
+    padding-top: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__city-name {
+    padding: 3rem;
+    width: fit-content;
+    text-align: end;
+    font-size: $size-smaller;
+  }
+}

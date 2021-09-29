@@ -1,5 +1,5 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { Switch, Route, Redirect, useLocation, useHistory, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import i18n from '@i18n';
 import { getQueryParams } from '@utils';
 import { Image, Button, Input } from '@components/atoms';
@@ -28,9 +28,15 @@ export const SearchBar = () => {
   };
 
   const propsLogo = {
-    srcSet: `${Logo_ML} 1x, ${Logo_ML2x} 2x`,
-    src: Logo_ML,
+    srcX1: Logo_ML,
+    srcX2: Logo_ML2x,
     alt: i18n('NAV_SEARCH__LOGO_ALT'),
+  };
+
+  const propsLogoLink = {
+    to: '/',
+    onClick: () => setSearchString(''),
+    className: 'nav-search__logo-home',
   };
 
   const propsButton = {
@@ -60,12 +66,6 @@ export const SearchBar = () => {
 
   const propsSearchBar = {
     className: 'nav-search__search-bar',
-  };
-
-  const propsLogoLink = {
-    to: '/',
-    onClick: () => setSearchString(''),
-    className: 'nav-search__logo-home',
   };
 
   return (

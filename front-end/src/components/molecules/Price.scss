@@ -1,0 +1,13 @@
+.price {
+  display: flex;
+  align-items: center;
+
+  &__decimals {
+  }
+
+  &__free-shipping {
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-left: 1.2rem;
+  }
+}

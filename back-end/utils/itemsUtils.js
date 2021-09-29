@@ -1,3 +1,18 @@
+const { FormatMoney } = require('format-money-js');
+
+const formatMoney = new FormatMoney({
+  decimals: 2,
+  separator: '.',
+});
+
+const getPriceAmount = (price) => {
+  let { amount, decimals } = formatMoney.from(price, { symbol: '' }, true);
+
+  amount = Number(amount.replaceAll('.', ''));
+  decimals = decimals.replaceAll('.', '');
+  return { amount, decimals };
+};
+
 const getCategoryListByFilters = (filters) => {
   const categoryFilter = filters.find(({ id }) => id === 'category');
   const { path_from_root } = categoryFilter?.values[0] || {};
@@ -15,13 +30,12 @@ const getItems = (results) => {
       thumbnail,
       condition,
       shipping: { free_shipping },
+      address: { city_name },
     } = item;
 
-    const [amount, decimals] = current_price.toString().split('.');
     const price = {
       currency: presentation.display_currency,
-      amount,
-      decimals,
+      ...getPriceAmount(current_price),
     };
 
     return {
@@ -31,10 +45,11 @@ const getItems = (results) => {
       picture: thumbnail,
       condition,
       free_shipping,
+      city_name,
     };
   });
 
   return items;
 };
 
-module.exports = { getCategoryListByFilters, getItems };
+module.exports = { getCategoryListByFilters, getItems, getPriceAmount };
