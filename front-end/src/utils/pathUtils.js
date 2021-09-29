@@ -40,3 +40,7 @@ export const hasParams = (params) => {
 
   return isFullObject || isFullString || isFullArray;
 };
+
+export const getSearchString = (search) => {
+  return new URLSearchParams(search).get('search') || '';
+};

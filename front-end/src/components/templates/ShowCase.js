@@ -20,20 +20,27 @@ export const ShowCase = () => {
     setQueryItems({ pathname, q: searchString });
   }, [search]);
 
+  // Unmount component
+  useEffect(() => () => setQueryItems(undefined), []);
+
   const withoutCategoryShow = () => {
     return _.isEmpty(categories) ? ' show-case--empty-top' : '';
   };
 
   return (
-    <section className={`show-case${withoutCategoryShow()}`}>
-      {items.map((item, index, { length }) => {
-        return (
-          <div key={index} className={'show-case__product-item-container'}>
-            <ProductItem item={item} />
-            {index < length - 1 && <hr />}
-          </div>
-        );
-      })}
-    </section>
+    <>
+      {!_.isEmpty(items) && (
+        <section className={`show-case${withoutCategoryShow()}`}>
+          {items.map((item, index, { length }) => {
+            return (
+              <div key={index} className={'show-case__product-item-container'}>
+                <ProductItem item={item} />
+                {index < length - 1 && <hr />}
+              </div>
+            );
+          })}
+        </section>
+      )}
+    </>
   );
 };

@@ -9,11 +9,13 @@ export const ProductDetail = (props) => {
   let { id } = useParams();
   let location = useLocation();
 
-  const { item, setQueryItem, categories } = useContext(ItemsContext);
+  const { item, setQueryItem, setQueryItems, categories } = useContext(ItemsContext);
 
   useEffect(() => {
     setQueryItem([REACT_APP_END_POINT_PRODUCT_DETAILS, id]);
   }, [id]);
+
+  useEffect(() => () => setQueryItem(undefined), []);
 
   return (
     <>

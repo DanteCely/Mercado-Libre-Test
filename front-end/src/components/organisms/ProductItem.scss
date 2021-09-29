@@ -14,10 +14,17 @@
     width: 18rem;
     height: 18rem;
     border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__price {
+    .price__label {
+      cursor: pointer;
+    }
   }
 
   &__price-description {
-    padding-top: 3rem;
+    padding-top: 2.5rem;
     font-size: $size-medium;
     width: 60rem;
   }
@@ -27,12 +34,13 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    cursor: pointer;
   }
 
   &__city-name {
-    padding: 3rem;
+    padding: 3rem 3rem 0 0;
     width: fit-content;
     text-align: end;
-    font-size: $size-smaller;
+    font-size: $size-small;
   }
 }

@@ -8,7 +8,10 @@ export const useRequest = () => {
   const [response, setResponse] = useState({});
 
   const fetchAPI = useCallback(async () => {
-    if (hasParams(params)) {
+    if (!params) {
+      // Reset the response
+      setResponse({});
+    } else if (hasParams(params)) {
       const urlPath = createPathByParamsType(REACT_APP_URL, params);
       const response = await fetch(urlPath);
 

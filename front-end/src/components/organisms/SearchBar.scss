@@ -13,7 +13,7 @@
 
   &__logo-home {
     @include nav-search-in;
-    padding: 1rem;
+    padding-right: 2rem;
     display: flex;
     align-content: space-around;
     justify-content: center;
@@ -24,7 +24,7 @@
     display: flex;
     align-items: center;
     width: 70%;
-    max-width: 80rem;
+    max-width: 106rem;
   }
 
   &__input {

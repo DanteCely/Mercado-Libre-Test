@@ -11,7 +11,7 @@ import i18n from '@i18n';
 import './Price.scss';
 
 export const Price = (props) => {
-  const { freeShipping, amount, decimals, title, children, ...rest } = props;
+  const { freeShipping, amount, decimals, title, children, onClick, className = '', ...rest } = props;
 
   const propsShippingImg = {
     srcX1: ic_shipping,
@@ -20,11 +20,16 @@ export const Price = (props) => {
     className: 'price__free-shipping',
   };
 
+  const propsPrice = {
+    onClick,
+    title,
+    level: 3,
+    className: 'price__label',
+  };
+
   return (
-    <span className={'price'} {...rest}>
-      <Typography title={title} level={3}>
-        {getMoneyFormat(amount || children || 0)}
-      </Typography>
+    <span className={`price ${className}`} {...rest}>
+      <Typography {...propsPrice}>{getMoneyFormat(amount || children || 0)}</Typography>
       {decimals && <span className={'price__decimals'}>{decimals}</span>}
       {freeShipping && <Image {...propsShippingImg} />}
     </span>
@@ -32,9 +37,15 @@ export const Price = (props) => {
 };
 
 Price.prototype = {
+  className: PropTypes.string,
   freeShipping: PropTypes.bool,
   amount: PropTypes.number,
   decimals: PropTypes.string,
   title: PropTypes.string,
+  onClick: PropTypes.func,
   children: PropTypes.node,
+};
+
+Price.defaultProps = {
+  className: '',
 };

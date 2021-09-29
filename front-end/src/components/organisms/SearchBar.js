@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import i18n from '@i18n';
-import { getQueryParams } from '@utils';
+import { getQueryParams, getSearchString } from '@utils';
 import { Image, Button, Input } from '@components/atoms';
 import { Logo_ML, Logo_ML2x, ic_Search, ic_Search2x } from '@assets/images';
 import './SearchBar.scss';
@@ -11,7 +11,7 @@ const { REACT_APP_END_POINT_PRODUCT_DETAILS } = process.env;
 export const SearchBar = () => {
   let history = useHistory();
   let { search } = useLocation();
-  const [searchString, setSearchString] = useState(new URLSearchParams(search).get('search') || '');
+  const [searchString, setSearchString] = useState(() => getSearchString(search));
 
   const onSearch = () => {
     if (searchString) {
@@ -20,6 +20,14 @@ export const SearchBar = () => {
       history.push(searchParam);
     }
   };
+
+  useEffect(() => {
+    if (search) {
+      const searchString = getSearchString(search);
+
+      setSearchString(searchString);
+    }
+  }, [search]);
 
   const onKeyPress = (event) => {
     if (event.key === 'Enter') {
