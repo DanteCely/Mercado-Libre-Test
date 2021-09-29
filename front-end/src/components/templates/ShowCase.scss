@@ -1,10 +1,10 @@
+@import '@assets/styles/components';
 @import '@assets/styles/colors';
 @import '@assets/styles/fonts';
 
 .show-case {
-  background-color: white;
+  @include card-page;
   padding: 1.6rem;
-  border-radius: 4px;
 
   &--empty-top {
     margin-top: 5.6rem;

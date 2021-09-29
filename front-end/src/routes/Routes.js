@@ -1,11 +1,12 @@
 import React from 'react';
-import { Switch, Route, Redirect, useLocation, Link } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { Home } from '@components/templates';
 import { SearchBar } from '@components/organisms';
 
 import { renderRoutes } from '@utils';
+import { SearchProvider } from '@contexts/SearchContext';
+import { ProductsProvider } from '@contexts/ProductsContext';
 import { ItemsRoutes } from './ItemsRoutes';
-import ItemsProvider from './ItemContext';
 
 const routes = [
   {
@@ -21,9 +22,11 @@ const routes = [
 
 export const Routes = () => {
   return (
-    <ItemsProvider>
-      <SearchBar />
-      <Switch>{renderRoutes(routes)}</Switch>
-    </ItemsProvider>
+    <SearchProvider>
+      <ProductsProvider>
+        <SearchBar />
+        <Switch>{renderRoutes(routes)}</Switch>
+      </ProductsProvider>
+    </SearchProvider>
   );
 };

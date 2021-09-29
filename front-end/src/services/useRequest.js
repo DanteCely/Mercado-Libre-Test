@@ -4,7 +4,7 @@ import { createPathByParamsType, hasParams } from '@utils';
 const { REACT_APP_URL } = process.env;
 
 export const useRequest = () => {
-  const [params, setQueryItem] = useState();
+  const [params, setQueryProduct] = useState();
   const [response, setResponse] = useState({});
 
   const fetchAPI = useCallback(async () => {
@@ -29,5 +29,5 @@ export const useRequest = () => {
     fetchAPI();
   }, [fetchAPI]);
 
-  return [response, setQueryItem];
+  return [response, setQueryProduct];
 };

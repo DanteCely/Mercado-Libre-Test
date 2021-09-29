@@ -1,0 +1,6 @@
+@import '@assets/styles/components';
+
+.product-details {
+  @include card-page;
+  padding: 3.2rem;
+}

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ItemsContext } from '@routes/ItemContext';
+import ProductsContext from '@contexts/ProductsContext';
 import _ from 'lodash';
 import './Breadcrumb.scss';
 
 export const Breadcrumb = () => {
-  const { categories } = useContext(ItemsContext);
+  const { categories } = useContext(ProductsContext);
 
   const renderCategories = () => {
     const categoriesToRender = categories?.map((category, index, { length }) => (
