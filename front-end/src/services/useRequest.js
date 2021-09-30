@@ -20,8 +20,6 @@ export const useRequest = () => {
 
         if (ok) {
           setResponse(data);
-        } else {
-          // TODO: Handle error response
         }
       } catch (error) {
         console.log('Bad request');
