@@ -5,6 +5,10 @@
   padding: 3.2rem;
   display: flex;
 
+  &--empty-top {
+    @include empty-top;
+  }
+
   &__picture {
     width: 50rem;
     height: 50rem;

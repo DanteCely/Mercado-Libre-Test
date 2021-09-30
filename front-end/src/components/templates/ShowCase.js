@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import _ from 'lodash';
 import { useLocation } from 'react-router-dom';
 import ProductsContext from '@contexts/ProductsContext';
+import SearchContext from '@contexts/SearchContext';
 
 import { ProductItem } from '@components/organisms';
 
@@ -11,6 +12,7 @@ export const ShowCase = () => {
   let { pathname, search } = useLocation();
 
   const { showCaseResult, setQueryShowCase, categories } = useContext(ProductsContext);
+  const { setSearchString } = useContext(SearchContext);
 
   const { items = [] } = showCaseResult;
 
@@ -21,7 +23,13 @@ export const ShowCase = () => {
   }, [search]);
 
   // Unmount component
-  useEffect(() => () => setQueryShowCase(undefined), []);
+  useEffect(
+    () => () => {
+      setQueryShowCase(undefined);
+      setSearchString('');
+    },
+    []
+  );
 
   const withoutCategoryShow = () => {
     return _.isEmpty(categories) ? ' show-case--empty-top' : '';

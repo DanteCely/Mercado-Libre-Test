@@ -7,6 +7,10 @@
   border-radius: 4px;
 }
 
+@mixin empty-top {
+  margin-top: 5.6rem;
+}
+
 .primary-button {
   background-color: $blue;
   color: $white;

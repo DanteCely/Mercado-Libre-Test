@@ -3,7 +3,6 @@ import { useParams, useLocation } from 'react-router-dom';
 import _ from 'lodash';
 import i18n from '@i18n';
 import ProductsContext from '@contexts/ProductsContext';
-import SearchContext from '@contexts/SearchContext';
 
 import { Image, Typography } from '@components/atoms';
 import { ShopInfo } from '@components/molecules';
@@ -16,16 +15,13 @@ export const ProductDetail = (props) => {
   let { id } = useParams();
   let location = useLocation();
 
-  const { item, setQueryProduct, setQueryShowCase, categories } = useContext(ProductsContext);
-  const { setSearchString } = useContext(SearchContext);
+  const { item, setQueryProduct, categories } = useContext(ProductsContext);
 
   const { condition, description, picture, price, sold_quantity, title } = useMemo(() => {
     return { ...item };
   }, [item]);
 
   useEffect(() => {
-    setSearchString('');
-
     return () => {
       setQueryProduct(undefined);
     };
@@ -34,6 +30,10 @@ export const ProductDetail = (props) => {
   useEffect(() => {
     setQueryProduct([REACT_APP_END_POINT_PRODUCT_DETAILS, id]);
   }, [id]);
+
+  const withoutCategoryShow = () => {
+    return _.isEmpty(categories) ? ' product-detail--empty-top' : '';
+  };
 
   const propsImage = {
     src: picture,
@@ -57,7 +57,7 @@ export const ProductDetail = (props) => {
   return (
     <>
       {!_.isEmpty(item) && (
-        <section className={'product-detail'}>
+        <section className={`product-detail${withoutCategoryShow()}`}>
           <div className={'product-detail__left-section'}>
             <div className={'product-detail__picture'}>
               <Image {...propsImage} />

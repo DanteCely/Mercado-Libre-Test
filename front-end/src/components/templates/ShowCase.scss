@@ -7,7 +7,7 @@
   padding: 1.6rem;
 
   &--empty-top {
-    margin-top: 5.6rem;
+    @include empty-top;
   }
 
   hr {
