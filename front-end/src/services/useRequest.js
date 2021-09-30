@@ -9,18 +9,22 @@ export const useRequest = () => {
 
   const fetchAPI = useCallback(async () => {
     if (!params) {
-      // Reset the response
-      setResponse({});
+      setResponse({}); // Reset the response
     } else if (hasParams(params)) {
       const urlPath = createPathByParamsType(REACT_APP_URL, params);
-      const response = await fetch(urlPath);
 
-      const { ok, data } = await response.json();
+      try {
+        const response = await fetch(urlPath);
 
-      if (ok) {
-        setResponse(data);
-      } else {
-        // TODO: Handle error response
+        const { ok, data } = await response.json();
+
+        if (ok) {
+          setResponse(data);
+        } else {
+          // TODO: Handle error response
+        }
+      } catch (error) {
+        console.log('Bad request');
       }
     }
   }, [params]);

@@ -1,6 +1,29 @@
 @import '@assets/styles/components';
 
-.product-details {
+.product-detail {
   @include card-page;
   padding: 3.2rem;
+
+  &__picture {
+    width: 50rem;
+    height: 50rem;
+    text-align: center;
+
+    &--fitted {
+      width: inherit;
+      height: inherit;
+      object-fit: contain;
+    }
+  }
+
+  &__top-section {
+    display: flex;
+  }
+
+  &__bottom-section {
+    > h3 {
+    }
+    > p {
+    }
+  }
 }

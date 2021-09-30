@@ -7,7 +7,7 @@ export const ProductsProvider = ({ children }) => {
   const [showCaseResult, setQueryShowCase] = useRequest({});
   const [productResponse, setQueryProduct] = useRequest({});
 
-  const { categories: catFromItem, item = { price: {} } } = productResponse;
+  const { categories: catFromItem, item } = productResponse;
   const { categories: catFromItemsRes } = showCaseResult;
   const [categories, setCategories] = useState([]);
 

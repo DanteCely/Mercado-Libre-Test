@@ -1,8 +1,13 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import _ from 'lodash';
+import i18n from '@i18n';
 import ProductsContext from '@contexts/ProductsContext';
 import SearchContext from '@contexts/SearchContext';
+
+import { Image, Typography } from '@components/atoms';
+import { ShopInfo } from '@components/molecules';
+
 import './ProductDetail.scss';
 
 const { REACT_APP_END_POINT_PRODUCT_DETAILS } = process.env;
@@ -14,15 +19,7 @@ export const ProductDetail = (props) => {
   const { item, setQueryProduct, setQueryShowCase, categories } = useContext(ProductsContext);
   const { setSearchString } = useContext(SearchContext);
 
-  const {
-    condition,
-    description,
-    free_shipping,
-    picture,
-    price: { amount, currency, decimals },
-    sold_quantity,
-    title,
-  } = useMemo(() => {
+  const { condition, description, picture, price, sold_quantity, title } = useMemo(() => {
     return { ...item };
   }, [item]);
 
@@ -38,13 +35,39 @@ export const ProductDetail = (props) => {
     setQueryProduct([REACT_APP_END_POINT_PRODUCT_DETAILS, id]);
   }, [id]);
 
+  const propsImage = {
+    src: picture,
+    alt: i18n('PRODUCT_DETAIL__IMAGE_DESCRIPTOR'),
+    title,
+    className: 'product-detail__picture--fitted',
+  };
+
+  const propsShopInfo = {
+    title,
+    price,
+    condition,
+    soldQuantity: sold_quantity,
+    onBuyClick: () => console.log('Comprar'),
+  };
+
+  const propsTitleDescription = {
+    level: 3,
+  };
+
   return (
     <>
       {!_.isEmpty(item) && (
-        <section className={'item-details'}>
-          <div>I'm a Product Detail named with {id}</div>
-          <div>{JSON.stringify(location)}</div>
-          <div>{JSON.stringify(item)}</div>
+        <section className={'product-detail'}>
+          <div className={'product-detail__top-section'}>
+            <div className={'product-detail__picture'}>
+              <Image {...propsImage} />
+            </div>
+            <ShopInfo {...propsShopInfo} />
+          </div>
+          <div className={'product-detail__bottom-section'}>
+            <Typography {...propsTitleDescription}>{i18n('PRODUCT_DETAIL__TILTE_DECRIPTION')}</Typography>
+            <Typography>{description}</Typography>
+          </div>
         </section>
       )}
     </>
