@@ -23,7 +23,7 @@ export const Price = (props) => {
   const propsPrice = {
     onClick,
     title,
-    level: 3,
+    level: 4,
     className: 'price__label',
   };
 

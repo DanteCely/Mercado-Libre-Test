@@ -3,6 +3,7 @@
 .product-detail {
   @include card-page;
   padding: 3.2rem;
+  display: flex;
 
   &__picture {
     width: 50rem;
@@ -16,14 +17,20 @@
     }
   }
 
-  &__top-section {
+  &__left-section {
     display: flex;
+    flex-direction: column;
   }
 
-  &__bottom-section {
+  &__description {
+    margin-top: 3.2rem;
     > h3 {
+      padding-bottom: 3.2rem;
+      font-size: $size-larger;
     }
+
     > p {
+      font-size: $size-normal;
     }
   }
 }

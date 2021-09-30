@@ -58,15 +58,17 @@ export const ProductDetail = (props) => {
     <>
       {!_.isEmpty(item) && (
         <section className={'product-detail'}>
-          <div className={'product-detail__top-section'}>
+          <div className={'product-detail__left-section'}>
             <div className={'product-detail__picture'}>
               <Image {...propsImage} />
             </div>
-            <ShopInfo {...propsShopInfo} />
+            <div className={'product-detail__description'}>
+              <Typography {...propsTitleDescription}>{i18n('PRODUCT_DETAIL__TILTE_DECRIPTION')}</Typography>
+              <Typography>{description}</Typography>
+            </div>
           </div>
-          <div className={'product-detail__bottom-section'}>
-            <Typography {...propsTitleDescription}>{i18n('PRODUCT_DETAIL__TILTE_DECRIPTION')}</Typography>
-            <Typography>{description}</Typography>
+          <div className={'product-detail__right-section'}>
+            <ShopInfo {...propsShopInfo} />
           </div>
         </section>
       )}

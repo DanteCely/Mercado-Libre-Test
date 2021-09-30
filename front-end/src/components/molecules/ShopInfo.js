@@ -21,15 +21,18 @@ export const ShopInfo = (props) => {
 
   const propsButton = {
     onClick: onBuyClick,
-    className: 'shop-info__button-buy',
+    className: 'primary-button',
   };
 
   const propsTitleDescription = {
     level: 3,
+    className: 'shop-info__title-description',
   };
 
   const showSoldQuantity = () => {
-    return `${soldQuantity} ${i18n('SHOP_INFO__MESSAGE_SOLD')}`;
+    const messageSold = soldQuantity === 1 ? i18n('SHOP_INFO__MESSAGE_SOLD') : i18n('SHOP_INFO__MESSAGE_SOLD_PLURAL');
+
+    return `${soldQuantity} ${messageSold}`;
   };
 
   const showCondition = () => {
@@ -38,12 +41,16 @@ export const ShopInfo = (props) => {
 
   return (
     <div className={'shop-info'} {...propsShopInfo}>
-      <div>
-        <span>{showCondition()}</span> <span>{showSoldQuantity()}</span>
+      <div className='shop-info__sub-info'>
+        <span>{showCondition()}</span>
+        <span>{' - '}</span>
+        <span>{showSoldQuantity()}</span>
       </div>
       <Typography {...propsTitleDescription}>{title}</Typography>
       <Price {...propsPrice} />
-      <Button {...propsButton}>{i18n('SHOP_INFO__BUTTON_BUY')}</Button>
+      <div className={'shop-info__button-buy'}>
+        <Button {...propsButton}>{i18n('SHOP_INFO__BUTTON_BUY')}</Button>
+      </div>
     </div>
   );
 };

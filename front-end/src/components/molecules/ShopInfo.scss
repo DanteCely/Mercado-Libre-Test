@@ -1,6 +1,34 @@
+@import '@assets/styles/colors';
+@import '@assets/styles/fonts';
+
 .shop-info {
-  &__price-amount {
+  &__sub-info {
+    font-size: $size-small;
   }
+
+  &__title-description {
+    font-size: $size-large;
+    width: 33rem;
+    line-height: 1.4;
+  }
+
+  &__price-amount {
+    padding-block: 2.4rem;
+
+    > .price__label {
+      font-size: $size-x-large;
+      font-weight: 400;
+    }
+
+    > .price__decimals {
+      font-size: $size-large;
+      position: relative;
+      bottom: 1rem;
+      padding-left: 4px;
+    }
+  }
+
   &__button-buy {
+    padding-right: 2.4rem;
   }
 }

@@ -5,7 +5,8 @@
   "PRICE__FREE_SHIPPING_DESCRIPTOR": "Free shipping icon",
   "PRODUCT_ITEM__IMAGE_DESCRIPTOR": "Thumbnail of the product",
   "PRODUCT_DETAIL__TILTE_DECRIPTION": "Descripción del producto",
-  "SHOP_INFO__MESSAGE_SOLD": "Vendido",
+  "SHOP_INFO__MESSAGE_SOLD": "vendido",
+  "SHOP_INFO__MESSAGE_SOLD_PLURAL": "vendidos",
   "SHOP_INFO__MESSAGE_NEW": "Nuevo",
   "SHOP_INFO__MESSAGE_USED": "Usado",
   "SHOP_INFO__BUTTON_BUY": "Comprar"
